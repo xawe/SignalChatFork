@@ -39,6 +39,7 @@
     
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/Chat")
+        .withUrl("/Chat")
         .build();
 
     connection.start().catch(err => console.error(err.toString()));
