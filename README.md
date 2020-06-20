@@ -1,3 +1,5 @@
+Copy of ibrahimsuta SignalIR Chat, for study only
+Thanks for share your code.
 # Personal details
 Follow me on [Twitter](https://twitter.com/ibrahimsuta) - [@ibrahimsuta](https://twitter.com/ibrahimsuta)
 
