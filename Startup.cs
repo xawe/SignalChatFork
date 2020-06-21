@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SignalRSimpleChat.Model;
 using SignalRSimpleChat.Repository;
 using SignalRSimpleChat.Services;
+using System.Linq;
 
 namespace SignalRSimpleChat
 {
@@ -19,12 +21,11 @@ namespace SignalRSimpleChat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
             services.AddSignalR();
-
             services.AddScoped(typeof(IChatService), typeof(ChatService));
-            services.AddScoped(typeof(NetchatContext), typeof(NetchatContext));
-
+            services.AddScoped(typeof(NetchatContext), typeof(NetchatContext));            
+            services.Configure<ApplicationConfig>(Configuration.GetSection("ApplicationConfig"));
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

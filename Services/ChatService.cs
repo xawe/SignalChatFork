@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Microsoft.Extensions.Options;
+using SignalRSimpleChat.Model;
 using SignalRSimpleChat.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,29 +13,34 @@ namespace SignalRSimpleChat.Services
     {
 
         private NetchatContext context;
-        public ChatService(NetchatContext _context)
+        private IOptions<ApplicationConfig> configs;
+        public ChatService(NetchatContext _context, IOptions<ApplicationConfig> applicationConfigs)
         {
             context = _context;
+            configs = applicationConfigs;
         }
         public async Task SaveChat(string username, string message)
         {
-            if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(message))
+
+            if(configs.Value.Save_Messages_In_DB)
             {
-                context.Chat.Add(new SignalRSimpleChat.Model.Chat {
-                CreatedOn = DateTime.Now,
-                Message = message,
-                UserName = username
-                });
-                try
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(message))
                 {
-                    await context.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    var x = ex;
-                    throw ex;
-                }
-                
+                    context.Chat.Add(new SignalRSimpleChat.Model.Chat
+                    {
+                        CreatedOn = DateTime.Now,
+                        Message = message,
+                        UserName = username
+                    });
+                    try
+                    {
+                        await context.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }  
             }                       
         }
     }
