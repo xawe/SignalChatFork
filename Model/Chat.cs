@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SignalRSimpleChat.Repository
+namespace SignalRSimpleChat.Model
 {
     public partial class Chat
     {

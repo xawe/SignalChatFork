@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SignalRSimpleChat.Repository
@@ -15,7 +16,7 @@ namespace SignalRSimpleChat.Repository
         {
         }
 
-        public virtual DbSet<Chat> Chat { get; set; }
+        public virtual DbSet<SignalRSimpleChat.Model.Chat> Chat { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +29,7 @@ namespace SignalRSimpleChat.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Chat>(entity =>
+            modelBuilder.Entity<SignalRSimpleChat.Model.Chat>(entity =>
             {
                 entity.ToTable("chat");
 

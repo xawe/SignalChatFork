@@ -19,7 +19,7 @@ namespace SignalRSimpleChat.Services
         {
             if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(message))
             {
-                context.Chat.Add(new Repository.Chat {
+                context.Chat.Add(new SignalRSimpleChat.Model.Chat {
                 CreatedOn = DateTime.Now,
                 Message = message,
                 UserName = username
